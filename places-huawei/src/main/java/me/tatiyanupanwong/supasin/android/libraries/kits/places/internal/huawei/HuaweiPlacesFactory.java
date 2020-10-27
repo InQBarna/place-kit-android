@@ -44,7 +44,18 @@ public final class HuaweiPlacesFactory implements PlacesFactory {
 
     @Override
     public @NonNull PlacesClient createClient(@NonNull Context context) {
-        return new HuaweiPlacesClient(context);
+
+        String apiKey;
+        try {
+            apiKey = AGConnectServicesConfig.fromContext(context).getString("client/api_key");
+        } catch (Exception ex) {
+            apiKey = null;
+        }
+
+        if (TextUtils.isEmpty(apiKey) || apiKey == null) {
+            throw new NullPointerException("API key is not found in agconnect-services.json");
+        }
+        return new HuaweiPlacesClient(context, apiKey);
     }
 
 

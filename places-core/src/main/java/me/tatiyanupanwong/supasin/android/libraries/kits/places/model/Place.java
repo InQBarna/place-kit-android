@@ -66,6 +66,10 @@ public interface Place {
      */
     @Nullable String getAddress();
 
+
+
+    AddressDetail getAddressComponents();
+
     /**
      * Returns the latitude location of this Place.
      * <p>

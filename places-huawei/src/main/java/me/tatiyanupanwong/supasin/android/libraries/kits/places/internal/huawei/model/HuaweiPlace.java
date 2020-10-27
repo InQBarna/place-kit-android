@@ -23,6 +23,7 @@ import androidx.annotation.RestrictTo;
 import com.huawei.hms.site.api.model.Coordinate;
 import com.huawei.hms.site.api.model.Site;
 
+import me.tatiyanupanwong.supasin.android.libraries.kits.places.model.AddressDetail;
 import me.tatiyanupanwong.supasin.android.libraries.kits.places.model.Place;
 
 import static androidx.annotation.RestrictTo.Scope.LIBRARY;
@@ -49,6 +50,14 @@ public class HuaweiPlace implements Place {
     @Override
     public @Nullable String getAddress() {
         return mDelegate.getFormatAddress();
+    }
+
+    @Override
+    public AddressDetail getAddressComponents() {
+        if (mDelegate.address != null)
+            return new HuaweiAddressDetail(mDelegate.address);
+        else
+            return null;
     }
 
     @Override

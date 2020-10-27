@@ -23,6 +23,7 @@ import androidx.annotation.RestrictTo;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.tatiyanupanwong.supasin.android.libraries.kits.places.model.AddressDetail;
 import me.tatiyanupanwong.supasin.android.libraries.kits.places.model.Place;
 
 import static androidx.annotation.RestrictTo.Scope.LIBRARY;
@@ -49,6 +50,14 @@ public class GooglePlace implements Place {
     @Override
     public @Nullable String getAddress() {
         return mDelegate.getAddress();
+    }
+
+    @Override
+    public AddressDetail getAddressComponents() {
+        if (mDelegate.getAddressComponents() != null)
+            return new GoogleAddressDetail(mDelegate.getAddressComponents());
+        else
+            return null;
     }
 
     @Override
