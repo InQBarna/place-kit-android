@@ -67,7 +67,7 @@ public class GoogleAddressDetail implements AddressDetail {
     public String getSubAdminArea() {
         //TODO What's the equivalent
         for (AddressComponent c: mDelegate.asList()) {
-            if (c.getTypes().contains("administrative_area_level_1")) return c.getName();
+            if (c.getTypes().contains("locality")) return c.getName();
         }
         return null;
     }
@@ -90,9 +90,8 @@ public class GoogleAddressDetail implements AddressDetail {
 
     @Override
     public String getThoroughfare() {
-        //TODO What's the equivalent
         for (AddressComponent c: mDelegate.asList()) {
-            if (c.getTypes().contains("administrative_area_level_1")) return c.getName();
+            if (c.getTypes().contains("route")) return c.getName();
         }
         return null;
     }
