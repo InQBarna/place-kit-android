@@ -31,4 +31,4 @@ dependencies {
     api 'me.tatiyanupanwong.supasin.android.libraries.kits.base:base-core:1.0.0'
 }
 
-apply from: 'publish.gradle'
+//apply from: 'publish.gradle'
