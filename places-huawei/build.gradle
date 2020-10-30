@@ -35,9 +35,8 @@ dependencies {
     api project(':places-core')
 
     implementation 'me.tatiyanupanwong.supasin.android.libraries.kits.base:base-huawei:1.0.0'
-
     implementation 'com.huawei.hms:site:5.0.3.301'
-
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.lifecycle:lifecycle-runtime:2.2.0'
 }
 
