@@ -31,7 +31,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import me.tatiyanupanwong.supasin.android.libraries.kits.places.PlacesFactory;
+import me.tatiyanupanwong.supasin.android.libraries.kits.places.internal.huawei.model.HuaweiAutocomplete;
 import me.tatiyanupanwong.supasin.android.libraries.kits.places.internal.huawei.net.HuaweiPlacesClient;
+import me.tatiyanupanwong.supasin.android.libraries.kits.places.model.Autocomplete;
 import me.tatiyanupanwong.supasin.android.libraries.kits.places.net.PlacesClient;
 
 import static androidx.annotation.RestrictTo.Scope.LIBRARY;
@@ -58,6 +60,23 @@ public final class HuaweiPlacesFactory implements PlacesFactory {
         return new HuaweiPlacesClient(context, apiKey);
     }
 
+    @NonNull
+    @Override
+    public Autocomplete createAutocomplete(@NonNull Context context) {
+
+        String apiKey;
+        try {
+            apiKey = AGConnectServicesConfig.fromContext(context).getString("client/api_key");
+        } catch (Exception ex) {
+            apiKey = null;
+        }
+
+        if (TextUtils.isEmpty(apiKey) || apiKey == null) {
+            throw new NullPointerException("API key is not found in agconnect-services.json");
+        }
+
+        return new HuaweiAutocomplete(apiKey);
+    }
 
     public static @Nullable PlacesFactory buildIfSupported(@NonNull Context context) {
         final List<Integer> unavailableResults = Arrays.asList(

@@ -32,7 +32,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import me.tatiyanupanwong.supasin.android.libraries.kits.places.PlacesFactory;
+import me.tatiyanupanwong.supasin.android.libraries.kits.places.internal.google.model.GoogleAutocomplete;
 import me.tatiyanupanwong.supasin.android.libraries.kits.places.internal.google.net.GooglePlacesClient;
+import me.tatiyanupanwong.supasin.android.libraries.kits.places.model.Autocomplete;
 import me.tatiyanupanwong.supasin.android.libraries.kits.places.net.PlacesClient;
 
 import static androidx.annotation.RestrictTo.Scope.LIBRARY;
@@ -48,6 +50,11 @@ public final class GooglePlacesFactory implements PlacesFactory {
         return new GooglePlacesClient(context);
     }
 
+    @NonNull
+    @Override
+    public Autocomplete createAutocomplete(@NonNull Context context) {
+        return new GoogleAutocomplete();
+    }
 
     public static @Nullable PlacesFactory buildIfSupported(@NonNull Context context) {
         final List<Integer> unavailableResults = Arrays.asList(

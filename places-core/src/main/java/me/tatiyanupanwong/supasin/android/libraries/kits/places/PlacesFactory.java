@@ -21,6 +21,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
 
+import me.tatiyanupanwong.supasin.android.libraries.kits.places.model.Autocomplete;
 import me.tatiyanupanwong.supasin.android.libraries.kits.places.net.PlacesClient;
 
 import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
@@ -32,5 +33,7 @@ import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 public interface PlacesFactory {
 
     @NonNull PlacesClient createClient(@NonNull Context context);
+    @NonNull Autocomplete createAutocomplete(@NonNull Context context);
+
 
 }

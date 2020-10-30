@@ -21,6 +21,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import me.tatiyanupanwong.supasin.android.libraries.kits.internal.Preconditions;
+import me.tatiyanupanwong.supasin.android.libraries.kits.places.model.Autocomplete;
 import me.tatiyanupanwong.supasin.android.libraries.kits.places.net.PlacesClient;
 
 /**
@@ -40,6 +41,10 @@ public final class PlaceKit {
     public static @NonNull PlacesClient createClient(@NonNull Context context) {
         Preconditions.checkNotNull(context);
         return FACTORY.createClient(context);
+    }
+
+    public static @NonNull Autocomplete createAutocomplete(@NonNull Context context) {
+        return FACTORY.createAutocomplete(context);
     }
 
 }
