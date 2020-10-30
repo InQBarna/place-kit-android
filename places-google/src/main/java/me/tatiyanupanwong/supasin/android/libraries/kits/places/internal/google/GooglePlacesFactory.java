@@ -52,7 +52,7 @@ public final class GooglePlacesFactory implements PlacesFactory {
 
     @NonNull
     @Override
-    public Autocomplete createAutocomplete(@NonNull Context context) {
+    public Autocomplete createAutocomplete() {
         return new GoogleAutocomplete();
     }
 

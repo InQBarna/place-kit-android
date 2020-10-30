@@ -42,17 +42,18 @@ import static androidx.annotation.RestrictTo.Scope.LIBRARY;
 @SuppressWarnings("unused")
 public final class HuaweiPlacesFactory implements PlacesFactory {
 
-    private HuaweiPlacesFactory() {}
+    String apiKey;
 
-    @Override
-    public @NonNull PlacesClient createClient(@NonNull Context context) {
-
-        String apiKey;
+    private HuaweiPlacesFactory(Context context) {
         try {
             apiKey = AGConnectServicesConfig.fromContext(context).getString("client/api_key");
         } catch (Exception ex) {
             apiKey = null;
         }
+    }
+
+    @Override
+    public @NonNull PlacesClient createClient(@NonNull Context context) {
 
         if (TextUtils.isEmpty(apiKey) || apiKey == null) {
             throw new NullPointerException("API key is not found in agconnect-services.json");
@@ -62,14 +63,7 @@ public final class HuaweiPlacesFactory implements PlacesFactory {
 
     @NonNull
     @Override
-    public Autocomplete createAutocomplete(@NonNull Context context) {
-
-        String apiKey;
-        try {
-            apiKey = AGConnectServicesConfig.fromContext(context).getString("client/api_key");
-        } catch (Exception ex) {
-            apiKey = null;
-        }
+    public Autocomplete createAutocomplete() {
 
         if (TextUtils.isEmpty(apiKey) || apiKey == null) {
             throw new NullPointerException("API key is not found in agconnect-services.json");
@@ -100,7 +94,7 @@ public final class HuaweiPlacesFactory implements PlacesFactory {
             throw new NullPointerException("API key is not found in agconnect-services.json");
         }
 
-        return new HuaweiPlacesFactory();
+        return new HuaweiPlacesFactory(context);
     }
 
 }

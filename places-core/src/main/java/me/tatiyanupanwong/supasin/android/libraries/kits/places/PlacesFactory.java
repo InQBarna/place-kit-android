@@ -33,7 +33,7 @@ import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 public interface PlacesFactory {
 
     @NonNull PlacesClient createClient(@NonNull Context context);
-    @NonNull Autocomplete createAutocomplete(@NonNull Context context);
+    @NonNull Autocomplete createAutocomplete();
 
 
 }

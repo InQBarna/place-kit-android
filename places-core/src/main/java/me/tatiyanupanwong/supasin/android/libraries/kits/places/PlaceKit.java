@@ -17,11 +17,14 @@
 package me.tatiyanupanwong.supasin.android.libraries.kits.places;
 
 import android.content.Context;
+import android.content.Intent;
 
 import androidx.annotation.NonNull;
 
 import me.tatiyanupanwong.supasin.android.libraries.kits.internal.Preconditions;
 import me.tatiyanupanwong.supasin.android.libraries.kits.places.model.Autocomplete;
+import me.tatiyanupanwong.supasin.android.libraries.kits.places.model.Place;
+import me.tatiyanupanwong.supasin.android.libraries.kits.places.model.Status;
 import me.tatiyanupanwong.supasin.android.libraries.kits.places.net.PlacesClient;
 
 /**
@@ -43,8 +46,16 @@ public final class PlaceKit {
         return FACTORY.createClient(context);
     }
 
-    public static @NonNull Autocomplete createAutocomplete(@NonNull Context context) {
-        return FACTORY.createAutocomplete(context);
+    public static @NonNull Autocomplete createAutocomplete() {
+        return FACTORY.createAutocomplete();
+    }
+
+    public static Place getPlaceFromIntent(Intent intent) {
+        return createAutocomplete().getPlaceFromIntent(intent);
+    }
+
+    public static Status getStatusFromIntent(Intent intent) {
+        return createAutocomplete().getStatusFromIntent(intent);
     }
 
 }
