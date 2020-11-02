@@ -17,6 +17,7 @@
 package me.tatiyanupanwong.supasin.android.libraries.kits.places.internal.huawei;
 
 import android.content.Context;
+import android.net.Uri;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -46,7 +47,7 @@ public final class HuaweiPlacesFactory implements PlacesFactory {
 
     private HuaweiPlacesFactory(Context context) {
         try {
-            apiKey = AGConnectServicesConfig.fromContext(context).getString("client/api_key");
+            apiKey = Uri.encode(AGConnectServicesConfig.fromContext(context).getString("client/api_key"));
         } catch (Exception ex) {
             apiKey = null;
         }
