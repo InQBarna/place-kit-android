@@ -2,6 +2,7 @@ package me.tatiyanupanwong.supasin.android.libraries.kits.places.internal.huawei
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.huawei.hms.site.api.model.SearchStatus;
@@ -40,12 +41,22 @@ public class HuaweiAutocomplete implements Autocomplete {
 
     @Override
     public Place getPlaceFromIntent(Intent intent) {
-        return HuaweiPlace.wrap(mDelegate.getSiteFromIntent(intent));
+        try {
+            return HuaweiPlace.wrap(mDelegate.getSiteFromIntent(intent));
+        } catch (Exception e) {
+            Log.e("HuaweiAutocomplete", e.toString());
+            return null;
+        }
     }
 
     @Override
     public Status getStatusFromIntent(Intent intent) {
-        SearchStatus searchStatus = mDelegate.getStatusFromIntent(intent);
-        return new Status(searchStatus.errorMessage);
+        try {
+            SearchStatus searchStatus = mDelegate.getStatusFromIntent(intent);
+            return new Status(searchStatus.errorMessage);
+        } catch (Exception e) {
+            Log.e("HuaweiAutocomplete", e.toString());
+            return null;
+        }
     }
 }

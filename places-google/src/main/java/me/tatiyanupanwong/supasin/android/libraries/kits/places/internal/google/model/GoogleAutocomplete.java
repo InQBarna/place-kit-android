@@ -2,6 +2,8 @@ package me.tatiyanupanwong.supasin.android.libraries.kits.places.internal.google
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
@@ -35,13 +37,23 @@ public class GoogleAutocomplete implements Autocomplete {
 
     @Override
     public me.tatiyanupanwong.supasin.android.libraries.kits.places.model.Place getPlaceFromIntent(Intent intent) {
-        Place place =  com.google.android.libraries.places.widget.Autocomplete.getPlaceFromIntent(intent);
-        return GooglePlace.wrap(place);
+        try {
+            Place place =  com.google.android.libraries.places.widget.Autocomplete.getPlaceFromIntent(intent);
+            return GooglePlace.wrap(place);
+        } catch (Exception e) {
+            Log.e("GoogleAutocomplete", e.toString());
+            return null;
+        }
     }
 
     @Override
     public Status getStatusFromIntent(Intent intent) {
-        com.google.android.gms.common.api.Status status = com.google.android.libraries.places.widget.Autocomplete.getStatusFromIntent(intent);
-        return new Status(status.getStatusMessage());
+        try {
+            com.google.android.gms.common.api.Status status = com.google.android.libraries.places.widget.Autocomplete.getStatusFromIntent(intent);
+            return new Status(status.getStatusMessage());
+        } catch (Exception e) {
+            Log.e("GoogleAutocomplete", e.toString());
+            return null;
+        }
     }
 }
