@@ -17,7 +17,7 @@ public class GoogleAutocomplete implements Autocomplete {
 
     public GoogleAutocomplete() {
         this.mDelegate = new com.google.android.libraries.places.widget.Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN,
-                Arrays.asList(Place.Field.ID, Place.Field.LAT_LNG, Place.Field.NAME));
+                Arrays.asList(Place.Field.ID, Place.Field.LAT_LNG, Place.Field.NAME, Place.Field.ADDRESS, Place.Field.ADDRESS_COMPONENTS));
     }
 
     @Override
